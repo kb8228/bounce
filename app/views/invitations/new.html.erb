@@ -1,0 +1,10 @@
+<h1>Post your invitation!</h1>
+
+<%= form_for @invitation do |f| %>
+  <div>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+  </div>
+  <%= f.submit "Post!" %>
+
+<% end %>

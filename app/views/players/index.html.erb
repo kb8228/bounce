@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  Logged in as: <%= current_player.username %> <%= link_to 'Log out', logout_path, method: :delete %>
+<% else %>
+  <%= link_to 'Log in', login_path %>
+  <%= link_to 'Sign up', signup_path %>
+<% end %>
+
+<h1>Tennis partners near you:</h1>
+<ul>
+  <% @players.each do |player| %>
+    <li>
+      <%= player.username %>
+    </li>
+  <% end %>
+</ul>

@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  root "players#index"
 
   #Player routes
   get "players/" => "players#index"
+  get "players/:id" => "players#show", as: :player
   get "signup" => "players#new"
   post "players/" => "players#create"
+  get "players/:id/edit" => "players#edit"
+  patch "players/:id" => "players#update"
 
   #Session routes:
   get "login" => "sessions#new"
@@ -12,9 +16,9 @@ Rails.application.routes.draw do
 
   #Invitation routes:
   #get "invitations" => "invitations#index"
-  get "invite" => "invitations#new", as: :new_invitation
+  get "invitations/new" => "invitations#new", as: :new_invitation
   post "invitations" => "invitations#create"
-
+  patch "invitations/:id" => "invitations#update", as: :accept_invitation
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

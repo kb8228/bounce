@@ -1,6 +1,18 @@
 <h1>Sign up to find tennis partners!</h1>
 
 <%= form_for @player do |f| %>
+
+  <% if @player.errors.any? %>
+    <div>
+      <h4>So sorry, please fix <%= pluralize(@player.errors.count, "error") %>:</h4>
+        <ul>
+          <% @player.errors.full_messages.each do |msg| %>
+            <li><%= msg.downcase %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
   <div>
     <%= f.label :username %>
     <%= f.text_field :username %>
@@ -16,6 +28,11 @@
     <%= f.password_field :password %>
   </div>
 
-  <%= f.submit "Join!" %>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit "Join Bounce!" %>
 
 <% end %>

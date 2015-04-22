@@ -1,3 +1,5 @@
+<h3>Welcome, <%= current_player.username %> <small><%= link_to 'Log out', logout_path, method: :delete %></small></h3>
+
 <h1>Post your invitation!</h1>
 
 <%= form_for @invitation do |f| %>
@@ -5,6 +7,12 @@
     <%= f.label :date %>
     <%= f.text_field :date %>
   </div>
+
+  <div>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+
   <%= f.submit "Post!" %>
 
 <% end %>

@@ -1,15 +1,22 @@
-<% if logged_in? %>
-  Logged in as: <%= current_player.username %> <%= link_to 'Log out', logout_path, method: :delete %>
-<% else %>
-  <%= link_to 'Log in', login_path %>
-  <%= link_to 'Sign up', signup_path %>
-<% end %>
 
-<h1>Tennis partners near you:</h1>
-<ul>
-  <% @players.each do |player| %>
-    <li>
-      <%= player.username %>
-    </li>
+<!-- SETS @invitations to nil??? -->
+<section>
+  
+  <% if logged_in? %>
+  <h3>Open invitations near you:</h3>
+  <ul>
+    <% current_player.open_invitations.each do |match| %>
+        <li>
+          <%= match.date %> at <%= match.location %> by <%= match.player.username %> <%= link_to "Accept", accept_invitation_path(match), method: :patch %>
+        </li>
+    <% end %>
+  </ul>
+  <div>
+    <%= link_to "Create a new invitation!", new_invitation_path %>
+  </div>
+  <% else %>
+    <h3>Please log in or sign up to see open invitations near you!</h3>
   <% end %>
-</ul>
+
+</section>
+

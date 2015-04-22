@@ -1,8 +1,10 @@
 class Player < ActiveRecord::Base
 
-  has_many :invitations
-
+  has_many :invitations, dependent: :destroy
+  mount_uploader :image, ImageUploader
+  
   attr_reader :password
+  before_save :format_user_input
 
   def password=(unencrypted_password)
     unless unencrypted_password.empty?
@@ -20,8 +22,29 @@ class Player < ActiveRecord::Base
   end
 
   # check this for validity!!!
-  def matches
-    Invitation.where.not(responder: nil).where(invitation[:player_id] == self[:id] || invitation[:responder] == self[:id])
+  def responses
+    Invitation.where.not(responder: nil).where(player: self)
+  end
+
+  def accepted
+    Invitation.where(responder: self)
+  end
+
+  def pending
+    Invitation.where(responder: nil).where(player: self)
+  end
+
+  def open_invitations
+    Invitation.where.not(player: self).where(responder: nil)
+  end
+
+  validates :username, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :password, presence: true, confirmation: true, length: { in: 6..20 }
+  
+  private
+  def format_player_input
+    self.email = self.email.downcase
   end
 
 end

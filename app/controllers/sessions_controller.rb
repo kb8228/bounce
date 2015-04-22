@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       session[:player_id] = player.id.to_s #cookies can only accept strings
       redirect_to players_path
     else
+      flash.now[:error] = "Your email or password are incorrect."
       render :new
     end
   end

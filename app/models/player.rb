@@ -4,7 +4,7 @@ class Player < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   
   attr_reader :password
-  before_save :format_user_input
+  before_save :format_player_input
 
   def password=(unencrypted_password)
     unless unencrypted_password.empty?
@@ -40,10 +40,11 @@ class Player < ActiveRecord::Base
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :password, presence: true, confirmation: true, length: { in: 6..20 }
+  validates :password, presence: true, confirmation: true, length: { in: 6..20 }, on: :create
   
   private
   def format_player_input
+    self.username = self.username.titleize
     self.email = self.email.downcase
   end
 

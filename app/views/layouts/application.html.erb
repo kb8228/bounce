@@ -10,7 +10,7 @@
 
 <% if logged_in? %>
 
-  <p>Hello, <%= current_player.username %> | <%= link_to 'Browse', players_path %> | <%= link_to 'My Page', player_path(current_player) %> | <%= link_to 'Log Out', logout_path, method: :delete %></p>
+  <h4>Hello, <%= current_player.username %><small> | <%= link_to 'Browse', players_path %> | <%= link_to 'My Page', player_path(current_player) %> | <%= link_to 'Log Out', logout_path, method: :delete %></small></p>
 
 <% else %>
 
@@ -21,10 +21,10 @@
 <% end %>
 
 <% if flash[:welcome] %>
-  <h4><%= flash[:welcome] %></h4>
+  <h4 class="bg-success flash"><%= flash[:welcome] %></h4>
 <% end %>
 <% if flash[:error] %>
-  <h4><%= flash[:error] %></h4>
+  <h4 class="bg-danger flash"><%= flash[:error] %></h4>
 <% end %>
 
 <%= yield %>

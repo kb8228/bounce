@@ -38,9 +38,16 @@ class PlayersController < ApplicationController
     end
   end
 
+  def destroy
+    @player = Player.find(params[:id])
+    @player.destroy
+    session.delete(:player_id)
+    redirect_to players_path
+  end
+
   private
   def player_params
-    params.require(:player).permit(:username, :email, :password, :password_confirmation)
+    params.require(:player).permit(:username, :email, :password, :password_confirmation, :years_played, :image, :gender)
   end
 
   def require_login

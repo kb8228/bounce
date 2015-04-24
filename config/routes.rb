@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get "players/:id" => "players#show", as: :player
   get "signup" => "players#new"
   post "players/" => "players#create"
-  get "players/:id/edit" => "players#edit"
+  get "players/:id/edit" => "players#edit", as: :edit_player
   patch "players/:id" => "players#update"
+  delete "players/:id" => "players#destroy"
 
   #Session routes:
   get "login" => "sessions#new"

@@ -4,7 +4,7 @@
 </h3>
 <ul> 
   <% current_player.responses.each do |match| %>
-    <li><%= match.date %> at <%= match.location %> - with <%= match.responder.username %></li>
+    <li><%= match.date.strftime("%a, %b %-d %Y") %> at <%= match.time.strftime("%I:%M %p") %> at <%= match.location %> - with <%= match.responder.username %></li>
   <% end %>
 </ul>
 
@@ -13,7 +13,7 @@
 </h3>
 <ul>
   <% current_player.accepted.each do |match| %>
-    <li><%= match.date %> at <%= match.location %> - with <%= match.player.username %></li>
+    <li><%= match.date.strftime("%a, %b %-d %Y") %> at <%= match.time.strftime("%I:%M %p") %> at <%= match.location %> - with <%= match.player.username %></li>
   <% end %>
 </ul>
 
@@ -22,7 +22,7 @@
 </h3>
 <ul>
   <% current_player.pending.each do |match| %>
-    <li><%= match.date %> at <%= match.location %> - awaiting response</li>
+    <li><%= match.date.strftime("%a, %b %-d %Y") %> at <%= match.time.strftime("%I:%M %p") %> at <%= match.location %> - awaiting response</li>
   <% end %>
 </ul>
 </section>
@@ -36,11 +36,11 @@
   <h3>YOUR STATS:</h3>
   
   <div> <!-- WORK ON THIS: -->
-    <%# if current_player.image %>
-      <%#= image_tag current_player.image_url(:thumb) %>
-    <%# else %>
+    <% if current_player.image_url %>
+      <%= image_tag current_player.image_url(:thumb) %>
+    <% else %>
       <%= image_tag("default_userpic.jpg") %>
-    <%# end %>
+    <% end %>
   </div>
 
   <div>
@@ -53,5 +53,6 @@
   <div>
     <p>Gender: <%= current_player.gender ||= "?" %></p>
   </div>
+  <%= link_to "Edit your profile", edit_player_path(current_player) %>
 </section>
 

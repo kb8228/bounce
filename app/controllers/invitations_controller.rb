@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
 
   def create
     @player = current_player
-    @invitation = @player.invitations.new(params.require(:invitation).permit(:player_id, :location, :date))
+    @invitation = @player.invitations.new(params.require(:invitation).permit(:player_id, :location, :date, :time))
 
     if @invitation.save
       redirect_to players_path

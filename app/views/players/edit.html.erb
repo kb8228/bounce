@@ -1,0 +1,54 @@
+<%= form_for @player do |f| %>
+
+  <% if @player.errors.any? %>
+    <div>
+      <h4>So sorry, please fix <%= pluralize(@player.errors.count, "error") %>:</h4>
+        <ul>
+          <% @player.errors.full_messages.each do |msg| %>
+            <li><%= msg.downcase %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, :value => current_player.username %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email, :value => current_player.email %>
+  </div>
+
+  <div>
+    <%= f.label :years_played %>
+    <%= f.number_field :years_played %>
+  </div>
+
+  <div>
+      <%= f.label :image %> <!-- label -->
+      <%= f.file_field :image %> <!-- input -->
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, :placeholder => "current password" %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, :placeholder => "new password" %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :placeholder => "retype new password" %>
+  </div>
+
+  <%= f.submit "Update your profile!", method: :patch %>
+
+  <%= link_to "Delete my profile", player_path(current_player), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
+
+

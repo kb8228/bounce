@@ -24,3 +24,32 @@
 html body {
     background: url('clay_court_2.jpg');
 }
+
+.navbar{
+  margin: 0px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+.container {
+  text-align: justify;
+}
+
+section {
+  height: 100%;
+  margin: 10px 5px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 1)
+}
+
+.player-form{
+  background-color: white;
+  padding: 20px;
+  padding-top: 5px;
+  margin: 20px;
+}
+
+.no-margin {
+  margin: 0px;
+  margin-bottom: -20px;
+}

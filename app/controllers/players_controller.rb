@@ -32,7 +32,7 @@ class PlayersController < ApplicationController
 
     if @player.update(player_params)
       flash[:message] = "Your info was updated!"
-      redirect_to players_path
+      redirect_to player_path(@player)
     else
       render :edit
     end

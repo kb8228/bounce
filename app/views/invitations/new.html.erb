@@ -1,21 +1,21 @@
-<h1>Post your invitation!</h1>
+<div class="player-form col-sm-4">
+  <h2>Post your invitation!</h2>
 
-<%= form_for @invitation do |f| %>
-  <div>
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-  </div>
+  <%= form_for @invitation do |f| %>
+    <div class="form-group">
+      <%= f.label :date %>
+      <%= f.date_field :date, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :time %>
-    <%= f.time_field :time %>
-  </div>
+    <div class="form-group">
+      <%= f.label :time %>
+      <%= f.time_field :time, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <%= f.submit "Post!" %>
-
-<% end %>
+    <div class="form-group">
+      <%= f.label :location %>
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+    <%= f.submit "Post!", class: "btn btn-success" %>
+  <% end %>
+</div>

@@ -1,54 +1,70 @@
-<%= form_for @player do |f| %>
+<div class="container">
+  <section class="col-sm-6">
+    <%= form_for @player do |f| %>
 
-  <% if @player.errors.any? %>
-    <div>
-      <h4>So sorry, please fix <%= pluralize(@player.errors.count, "error") %>:</h4>
-        <ul>
-          <% @player.errors.full_messages.each do |msg| %>
-            <li><%= msg.downcase %></li>
-          <% end %>
-        </ul>
-    </div>
-  <% end %>
+      <% if @player.errors.any? %>
+        <div>
+          <h4>So sorry, please fix <%= pluralize(@player.errors.count, "error") %>:</h4>
+            <ul>
+              <% @player.errors.full_messages.each do |msg| %>
+                <li><%= msg.downcase %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, :value => current_player.username %>
-  </div>
+      <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, :value => current_player.username, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email, :value => current_player.email %>
-  </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, :value => current_player.email, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= f.label :years_played %>
-    <%= f.number_field :years_played %>
-  </div>
+      <div class="form-group">
+        <%= f.label :years_played %>
+        <%= f.number_field :years_played, class: "form-control" %>
+      </div>
 
-  <div>
-      <%= f.label :image %> <!-- label -->
-      <%= f.file_field :image %> <!-- input -->
-  </div>
+      <div class="form-group">
+        <%= f.label :gender %>
+        <%= f.radio_button(:gender, "female") %>
+        <%= f.label :gender_female, "female" %>
+        <%= f.radio_button(:gender, "male") %>
+        <%= f.label :gender_male, "male" %>
+        <%= f.radio_button(:gender, "no answer") %>
+        <%= f.label :gender_no_answer, "no answer" %>
+      </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, :placeholder => "current password" %>
-  </div>
+      <div class="form-group">
+          <%= f.label :image %> <!-- label -->
+          <%= f.file_field :image %> <!-- input -->
+      </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, :placeholder => "new password" %>
-  </div>
+      <%= f.submit "Update my profile!", method: :patch, class: "btn btn-success" %>
 
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, :placeholder => "retype new password" %>
-  </div>
+      <%= link_to "Delete my profile", player_path(current_player), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    <% end %>
+  </section>
+  <section class="col-sm-5">
+    <%= form_for @player do |f| %>
+      <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, :placeholder => "current password", class: "form-control" %>
+        </div>
 
-  <%= f.submit "Update your profile!", method: :patch %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, :placeholder => "new password", class: "form-control" %>
+      </div>
 
-  <%= link_to "Delete my profile", player_path(current_player), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
-
-
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, :placeholder => "retype new password", class: "form-control" %>
+      </div>
+      <%= f.submit "Change password!", method: :patch, class: "btn btn-success" %>
+    <% end%>
+  </section>
+</div>

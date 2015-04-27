@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   post "invitations" => "invitations#create"
   patch "invitations/:id" => "invitations#update", as: :accept_invitation
 
+  #Location routes:
+  get "locations" => "locations#index"
+  get "locations/new" => "locations#new", as: :new_location
+  post "locations" => "locations#create"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

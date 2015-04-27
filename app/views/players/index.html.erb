@@ -1,22 +1,22 @@
-
-<!-- SETS @invitations to nil??? -->
-<section class="col-sm-8 player-form">
-  
+<div class="container">
   <% if logged_in? %>
-  <h2>Open invitations near you:</h2>
-  <ul class="list-group">
-    <% current_player.open_invitations.each do |match| %>
-        <li class="list-group-item">
-          <%= match.date.strftime("%a, %b %-d %Y") %> at <%= match.time.strftime("%I:%M %p") %> at <%= match.location %> by <%= match.player.username %> | <%= link_to "Accept", accept_invitation_path(match), method: :patch %>
-        </li>
-    <% end %>
-  </ul>
-  <div>
-    <%= link_to "Create a new invitation!", new_invitation_path %>
-  </div>
+    <section class="col-md-5 player-form"> 
+      
+      <h3>Open invitations near you:</h3>
+      <ul class="list-group">
+        <% current_player.open_invitations.each do |match| %>
+            <li class="list-group-item">
+              <%= match.date.strftime("%a, %b %-d %Y") %> at <%= match.time.strftime("%I:%M %p") %> at <%= match.location %> by <%= match.player.username %> | <%= link_to "Accept", accept_invitation_path(match), method: :patch %>
+            </li>
+        <% end %>
+      </ul>
+      <div>
+        <%= link_to "Create a new invitation!", new_invitation_path %>
+      </div>
+    </section>
   <% else %>
     <h3>Please log in or sign up to see open invitations near you!</h3>
   <% end %>
+</div>
 
-</section>
 

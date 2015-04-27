@@ -1,7 +1,7 @@
 <div class="container">
   <section class="col-sm-7">
   <h3> <!-- RESPONSES -->
-    You've got <%= pluralize(current_player.responses.count, "invitation") %> accepted:
+    You've got <%= pluralize(current_player.responses.count, "invitation") %> accepted
   </h3>
   <ul> 
     <% current_player.responses.each do |match| %>
@@ -10,7 +10,7 @@
   </ul>
 
   <h3> <!-- ACCEPTED -->
-    You have accepted <%= pluralize(current_player.accepted.count, "invitation") %>:
+    You have accepted <%= pluralize(current_player.accepted.count, "invitation") %>
   </h3>
   <ul>
     <% current_player.accepted.each do |match| %>
@@ -19,7 +19,7 @@
   </ul>
 
   <h3> <!-- PENDING -->
-    You have <%= pluralize(current_player.pending.count, "pending invitation") %>:
+    You have <%= pluralize(current_player.pending.count, "pending invitation") %>
   </h3>
   <ul>
     <% current_player.pending.each do |match| %>
@@ -34,7 +34,7 @@
     <!-- profile info -->
     <h3>YOUR STATS:</h3>
     
-    <div> <!-- WORK ON THIS: -->
+    <div>
       <% if current_player.image_url %>
         <%= image_tag current_player.image_url(:thumb) %>
       <% else %>

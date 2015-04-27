@@ -1,5 +1,4 @@
 class Player < ActiveRecord::Base
-
   has_many :invitations, dependent: :destroy
   mount_uploader :image, ImageUploader
   

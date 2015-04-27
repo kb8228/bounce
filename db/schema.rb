@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427025653) do
+ActiveRecord::Schema.define(version: 20150423020409) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "player_id"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150427025653) do
     t.time     "time"
   end
 
-  add_index "invitations", ["player_id"], name: "index_invitations_on_player_id"
+  add_index "invitations", ["player_id"], name: "index_invitations_on_player_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "username"
@@ -38,4 +41,5 @@ ActiveRecord::Schema.define(version: 20150427025653) do
     t.string   "gender"
   end
 
+  add_foreign_key "invitations", "players"
 end

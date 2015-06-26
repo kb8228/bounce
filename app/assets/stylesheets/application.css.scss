@@ -21,9 +21,12 @@
   margin: 5px;
 }
 
-html {
-    background: url('http://80.86.87.162/wp-content/uploads/2013/11/active-background1.jpg');
-    height: 100%;
+html body {
+    background: url('http://80.86.87.162/wp-content/uploads/2013/11/active-background1.jpg')no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .navbar{
